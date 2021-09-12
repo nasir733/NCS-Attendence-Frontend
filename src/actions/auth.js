@@ -131,7 +131,7 @@ export const signup = (formdata) => async dispatch => {
 
     try {
         const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`, formdata, config);
-
+console.log(res.data);
         dispatch({
             type: SIGNUP_SUCCESS,
             payload: res.data

@@ -65,7 +65,7 @@ const ProfilePic = e => setFormData({ ...formData, [e.target.name]: e.target.fil
       <div className="container mt-5">
         <h1>Sign Up</h1>
         <p>Create your Account</p>
-        <form onSubmit={(e) => onSubmit(e)}>
+        <form id="signup">
           <div className="form-group">
             <input
               className="form-control"
@@ -182,7 +182,12 @@ const ProfilePic = e => setFormData({ ...formData, [e.target.name]: e.target.fil
             />
           </div>
 
-          <button className="btn btn-primary" type="submit">
+          <button
+            form="signup"
+            className="btn btn-primary"
+       
+            onClick={(e) => onSubmit(e)}
+          >
             Register
           </button>
         </form>
