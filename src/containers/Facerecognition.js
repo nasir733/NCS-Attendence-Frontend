@@ -48,26 +48,7 @@ const Facerecognition = () => {
         
         const imageSrc = webcamRef.current.getScreenshot();
         setImage(imageSrc);
-        //      let formdata = new FormData();
-        // urltoFile(imageSrc, "a.png").then(function (file) {
-        //     console.log(file, "file");
-        //     formdata.append("picture", file);
-        // });
-        //    const config = {
-        //      headers: {
-        //        "Content-Type": "application/json",
-        //      },
-        //    };
-        //  try {
-        //      const res = await Axios.post(
-        //        `${process.env.REACT_APP_API_URL}/api/v1/`,
-        //        formdata,
-        //        config
-        //      );
-        //      console.log(res.data);
-        //  } catch (error) {
-        //      console.log(error);
-        //  }
+
              
          
      }, [webcamRef]);
