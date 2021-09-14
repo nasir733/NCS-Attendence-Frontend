@@ -1,0 +1,22 @@
+.submit_photo_div{
+    height: 100vh;
+}
+
+
+.detected-image{
+    object-fit: contain;
+    width:80%;
+    height:100%;
+}
+.result_container{
+    height: 50vh;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items: center;
+}
+.result-image{
+    width:50%;
+    height:50%;
+    object-fit: contain;
+}

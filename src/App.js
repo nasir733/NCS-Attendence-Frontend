@@ -6,6 +6,7 @@ import Signup from './containers/Signup';
 import Activate from './containers/Activate';
 import ResetPassword from './containers/ResetPassword';
 import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
+import { ToastContainer, toast } from "react-toastify";
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -15,6 +16,7 @@ import Facerecognition from "./containers/Facerecognition";
 
 const App = () => (
   <Provider store={store}>
+    <ToastContainer />
     <Router>
       <Layout>
         <Switch>
