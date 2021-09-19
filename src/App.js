@@ -13,6 +13,7 @@ import store from './store';
 
 import Layout from './hocs/Layout';
 import Facerecognition from "./containers/Facerecognition";
+import ViewAttendence from './containers/ViewAttendence';
 
 const App = () => (
   <Provider store={store}>
@@ -31,6 +32,7 @@ const App = () => (
           />
           <Route exact path="/activate/:uid/:token" component={Activate} />
           <Route exact path="/attendence" component={Facerecognition} />
+          <Route exact path="/view-attendence"component={ViewAttendence}/>
         </Switch>
       </Layout>
     </Router>

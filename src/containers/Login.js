@@ -24,8 +24,8 @@ const Login = ({ login, isAuthenticated }) => {
     
     return (
         <div className='container mt-5'>
-            <h1>Sign In</h1>
-            <p>Sign into your Account</p>
+            <h1 className="text-white">Sign In</h1>
+            <p className="text-white">Sign into your Account</p>
             <form onSubmit={e => onSubmit(e)}>
                 <div className='form-group'>
                     <input 
