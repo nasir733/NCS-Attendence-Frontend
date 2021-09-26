@@ -6,7 +6,7 @@ import Webcam from "react-webcam";
 import "../styles/Facerecognition.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Spinner,Button } from "react-bootstrap";
+import { Spinner, Button } from "react-bootstrap";
 import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import { drawMesh } from "./utilities";
@@ -35,18 +35,20 @@ const Facerecognition = () => {
   const [userData, setUserData] = React.useState(null);
   const [loading, setLoading] = React.useState(null);
   const [captureButton, setCaptureButton] = React.useState(false);
-const runFacemesh = async () => {
-  // OLD MODEL
-  // const net = await facemesh.load({
-  //   inputResolution: { width: 640, height: 480 },
-  //   scale: 0.8,
-  // });
-  // NEW MODEL
-  const net = await facemesh.load(facemesh.SupportedPackages.mediapipeFacemesh);
-  setInterval(() => {
-    detect(net);
-  }, 100);
-};
+  const runFacemesh = async () => {
+    // OLD MODEL
+    // const net = await facemesh.load({
+    //   inputResolution: { width: 640, height: 480 },
+    //   scale: 0.8,
+    // });
+    // NEW MODEL
+    const net = await facemesh.load(
+      facemesh.SupportedPackages.mediapipeFacemesh
+    );
+    setInterval(() => {
+      detect(net);
+    }, 100);
+  };
   const detect = async (net) => {
     if (
       typeof webcamRef.current !== "undefined" &&
@@ -71,16 +73,16 @@ const runFacemesh = async () => {
       //       const face = await net.estimateFaces(video);
       // NEW MODEL
       const face = await net.estimateFaces({ input: video });
-      console.log(face);
-      if (face.length > 0) { 
-        console.log('the face is detected')
+      // console.log(face);
+      if (face.length > 0) {
+        console.log("the face is detected");
         if (captureButton === false) {
           setCaptureButton(true);
         }
       } else {
-         if (captureButton ===true) {
-           setCaptureButton(false);
-         }
+        if (captureButton === true) {
+          setCaptureButton(false);
+        }
       }
       // Get canvas context
       const ctx = canvasRef.current.getContext("2d");
@@ -120,8 +122,8 @@ const runFacemesh = async () => {
               draggable: true,
               progress: undefined,
             });
-          } else {
-            toast.error("Person Not Identified ", {
+          }else if (res.status === 403){
+            toast.error("You Dont Have Permission To Perform This Action Plzz Use Admin Account  ", {
               position: "top-center",
               autoClose: 5000,
               hideProgressBar: false,
@@ -133,7 +135,17 @@ const runFacemesh = async () => {
           }
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response.data, "this is the error --------");
+          toast.error(`${err.response.data["message"]}`, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          goBack();
         });
     }
   };
@@ -176,17 +188,16 @@ const runFacemesh = async () => {
         console.warn(err);
       });
   };
-  const goBack = () => { 
-    setImage(null)
-    setLoading(null)
-    setUserData(null)
+  const goBack = () => {
+    setImage(null);
+    setLoading(null);
+    setUserData(null);
     console.log("goBack");
-  }
+  };
   const capture = React.useCallback(async () => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImage(imageSrc);
   }, [webcamRef]);
-  
 
   return (
     <>

@@ -7,7 +7,7 @@ import download from "../download.jfif";
 const navbar = ({ isAuthenticated, logout }) => {
   const authLinks = (
     <li className="nav-item">
-      <a className="nav-link" onClick={logout} href="#!">
+      <a className="nav-link text-white" onClick={logout} href="#!">
         Logout
       </a>
     </li>
