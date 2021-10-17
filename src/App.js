@@ -1,19 +1,19 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './containers/Home';
-import Login from './containers/Login';
-import Signup from './containers/Signup';
-import Activate from './containers/Activate';
-import ResetPassword from './containers/ResetPassword';
-import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./containers/Home";
+import Login from "./containers/Login";
+import Signup from "./containers/Signup";
+import Activate from "./containers/Activate";
+import ResetPassword from "./containers/ResetPassword";
+import ResetPasswordConfirm from "./containers/ResetPasswordConfirm";
 import { ToastContainer, toast } from "react-toastify";
 
-import { Provider } from 'react-redux';
-import store from './store';
+import { Provider } from "react-redux";
+import store from "./store";
 
-import Layout from './hocs/Layout';
+import Layout from "./hocs/Layout";
 import Facerecognition from "./containers/Facerecognition";
-import ViewAttendence from './containers/ViewAttendence';
+import ViewAttendence from "./containers/ViewAttendence";
 
 const App = () => (
   <Provider store={store}>
@@ -32,7 +32,7 @@ const App = () => (
           />
           <Route exact path="/activate/:uid/:token" component={Activate} />
           <Route exact path="/attendence" component={Facerecognition} />
-          <Route exact path="/view-attendence"component={ViewAttendence}/>
+          <Route exact path="/view-attendence" component={ViewAttendence} />
         </Switch>
       </Layout>
     </Router>

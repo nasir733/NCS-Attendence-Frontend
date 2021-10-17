@@ -169,11 +169,12 @@ export const signup = (formdata) => async (dispatch) => {
       draggable: true,
       progress: undefined,
     });
+    return res;
   } catch (err) {
     dispatch({
       type: SIGNUP_FAIL,
     });
-    toast.error(`${err.response.data["message"]}`, {
+    toast.error(`${JSON.stringify(err.response.data)}`, {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -182,6 +183,7 @@ export const signup = (formdata) => async (dispatch) => {
       draggable: true,
       progress: undefined,
     });
+    return false;
   }
 };
 

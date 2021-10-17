@@ -26,7 +26,7 @@ function urltoFile(url, filename, mimeType) {
       return new File([buf], filename, { type: mimeType });
     });
 }
-const Facerecognition = () => {
+const Facerecognition = ({ model }) => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const webcamRef = React.useRef(null);
   const canvasRef = React.useRef(null);
@@ -36,12 +36,6 @@ const Facerecognition = () => {
   const [loading, setLoading] = React.useState(null);
   const [captureButton, setCaptureButton] = React.useState(false);
   const runFacemesh = async () => {
-    // OLD MODEL
-    // const net = await facemesh.load({
-    //   inputResolution: { width: 640, height: 480 },
-    //   scale: 0.8,
-    // });
-    // NEW MODEL
     const net = await facemesh.load(
       facemesh.SupportedPackages.mediapipeFacemesh
     );
@@ -122,16 +116,19 @@ const Facerecognition = () => {
               draggable: true,
               progress: undefined,
             });
-          }else if (res.status === 403){
-            toast.error("You Dont Have Permission To Perform This Action Plzz Use Admin Account  ", {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
+          } else if (res.status === 403) {
+            toast.error(
+              "You Dont Have Permission To Perform This Action Plzz Use Admin Account  ",
+              {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              }
+            );
           }
         })
         .catch((err) => {
@@ -206,7 +203,7 @@ const Facerecognition = () => {
           {image ? (
             <>
               {!userData ? (
-                <div className=" submit_photo_div d-flex justify-content-around align-items-center container-fluid mt-10   mw-100 mx-100">
+                <div className=" submit_photo_div d-flex justify-content-around align-items-center  mt-10   mw-100 mx-100">
                   <img className="detected-image" src={image} alt="" />
                   {/* Canvas is there just to get rid of the error react complaining about the canvas ref not being set find a better way later  */}
                   <canvas
@@ -219,8 +216,8 @@ const Facerecognition = () => {
                       right: 0,
                       textAlign: "center",
                       zindex: 8,
-                      width: 640,
-                      height: 480,
+                      width: 0,
+                      height: 0,
                     }}
                   />
                   {loading ? (
